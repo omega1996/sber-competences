@@ -12,9 +12,9 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/frontend')
-def frontend():
-    return render_template('frontend/index.html')
+@app.route('/profession/<prof_name>')
+def frontend(prof_name):
+    return render_template(prof_name+'/index.html')
 
 
 @app.route('/get_top_tech/<specialization>/<year>/<month>')
