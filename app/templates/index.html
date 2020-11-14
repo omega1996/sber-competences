@@ -37,7 +37,7 @@
                         <div class="card sameheight-item stats" data-exclude="xs">
                             <div class="card-block">
                                 <div class="title-block">
-                                    <h4 class="title"> Статистика </h4>
+                                    <h4 class="title"> О проекте </h4>
                                 </div>
                                 <div class="row row-sm stats-container">
                                     <div class="col-12 col-sm-6 stat-col">
@@ -138,7 +138,82 @@
             </section>
             <section class="section">
                 <div class="row sameheight-container">
+                    <div class="col col-12 col-sm-12 col-md-6 col-xl-5 ">
+                        <div class="card sameheight-item stats" data-exclude="xs">
+                            <div class="card-block" style="height: 500px;">
 
+                                <style>
+                                    .input-date {
+                                        width: 100px;
+                                        align-self: end;
+                                        margin-left: 5px;
+                                    }
+                                </style>
+                                <div class="title-block d-flex">
+                                    <h4 class="title mr-auto p-2"> Статистика по специализациям </h4>
+                                    <select name="year" onchange="loadtable()"
+                                            class="form-control  input-date p-2" id="year">
+                                        {% for year in [2016,2017,2018,2019,2020] %}
+                                        <option value={{year}}>{{year}}</option>
+                                        {% endfor %}
+
+                                    </select>
+                                    <select name="month" onchange="loadtable()"
+                                            class="form-control  input-date p-2" id="month">
+                                        {% for month in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] %}
+                                        <option value={{month}}>{{month}}</option>
+                                        {% endfor %}
+
+                                    </select>
+                                </div>
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Специализация</th>
+                                        <th>Частота</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody id="table-stats">
+
+
+                                    </tbody>
+
+
+                                </table>
+                                <script>
+                                    function loadtable() {
+                                        let table = document.getElementById('table-stats');
+                                        let url = '/get_spec_stat/' + document.getElementById("year").value + '/' + document.getElementById("month").value
+                                        fetch(url).then(response => response.json()).then(data => {
+                                            table.innerHTML = "";
+                                            data.forEach((element, index) => {
+                                                let tr = document.createElement('tr')
+                                                let th = document.createElement('th')
+                                                th.scope = 'row';
+                                                th.innerText = index + 1;
+                                                tr.append(th);
+                                                let tech = document.createElement('td');
+                                                tech.innerText = element['spec'];
+                                                let freq = document.createElement('td');
+                                                freq.innerText = element.freq;
+                                                tr.append(tech);
+                                                tr.append(freq);
+                                                if (index < 8) {
+                                                    table.append(tr)
+                                                }
+
+                                            })
+                                        })
+                                    }
+
+                                    loadtable()
+
+                                </script>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </article>
