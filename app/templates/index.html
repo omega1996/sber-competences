@@ -33,114 +33,10 @@
         <article class="content dashboard-page">
             <section class="section">
                 <div class="row sameheight-container">
-                    <div class="col col-12 col-sm-12 col-md-6 col-xl-5 stats-col">
-                        <div class="card sameheight-item stats" data-exclude="xs">
-                            <div class="card-block">
-                                <div class="title-block">
-                                    <h4 class="title"> О проекте </h4>
-                                </div>
-                                <div class="row row-sm stats-container">
-                                    <div class="col-12 col-sm-6 stat-col">
-                                        <div class="stat-icon">
-                                            <i class="fa fa-stack-overflow"></i>
-                                        </div>
-                                        <div class="stat">
-                                            <div class="value"> 10 000 000</div>
-                                            <div class="name"> Вопросов StackOverflow</div>
-                                        </div>
-                                        <div class="progress stat-progress">
-                                            <div class="progress-bar" style="width: 100%;"></div>
-                                        </div>
-                                    </div>
 
-                                    <div class="col-12 col-sm-6  stat-col">
-                                        <div class="stat-icon">
-                                            <i class="fa fa-line-chart"></i>
-                                        </div>
-                                        <div class="stat">
-                                            <div class="value"> $112.550</div>
-                                            <div class="name"> Ежемесячная выгода</div>
-                                        </div>
-                                        <div class="progress stat-progress">
-                                            <div class="progress-bar" style="width: 100%;"></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12 col-sm-6  stat-col">
-                                        <div class="stat-icon">
-                                            <i class="fa fa-list-alt"></i>
-                                        </div>
-                                        <div class="stat">
-                                            <div class="value"> 80 000</div>
-                                            <div class="name"> IT-вакансий superjob</div>
-                                        </div>
-                                        <div class="progress stat-progress">
-                                            <div class="progress-bar" style="width: 100%;"></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12 col-sm-6  stat-col">
-                                        <div class="stat-icon">
-                                            <i class="fa fa-users"></i>
-                                        </div>
-                                        <div class="stat">
-                                            <div class="value"> 5</div>
-                                            <div class="name"> Участников</div>
-                                        </div>
-                                        <div class="progress stat-progress">
-                                            <div class="progress-bar" style="width: 100%;"></div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col col-12 col-sm-12 col-md-6 col-xl-7 history-col">
-                        <div class="card sameheight-item" data-exclude="xs" id="dashboard-history">
-                            <div class="card-header card-header-sm bordered">
-                                <div class="header-block">
-                                    <h3 class="title">История + предсказание</h3>
-                                </div>
-                                <ul class="nav nav-tabs pull-right" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" href="#visits" role="tab"
-                                           data-toggle="tab">Сумма вакансий</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#downloads" role="tab" data-toggle="tab">Профессии</a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="card-block">
-                                <div class="tab-content">
-                                    <div role="tabpanel" class="tab-pane active fade show" id="visits">
-                                        <div>
-                                            {% include 'all_vacancies.html' %}
-
-                                        </div>
-                                    </div>
-                                    <div role="tabpanel" class="tab-pane fade" id="downloads">
-                                        <div>
-                                            {% include 'all_specializations.html' %}
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="section">
-                <div class="row sameheight-container">
                     <div class="col col-12 col-sm-12 col-md-6 col-xl-5 ">
                         <div class="card sameheight-item stats" data-exclude="xs">
-                            <div class="card-block" style="height: 500px;">
+                            <div class="card-block">
 
                                 <style>
                                     .input-date {
@@ -214,6 +110,111 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="col col-12 col-sm-12 col-md-6 col-xl-7 history-col">
+                        <div class="card sameheight-item" data-exclude="xs" id="dashboard-history">
+                            <div class="card-header card-header-sm bordered">
+                                <div class="header-block">
+                                    <h3 class="title">История + предсказание</h3>
+                                </div>
+                                <ul class="nav nav-tabs pull-right" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#visits" role="tab"
+                                           data-toggle="tab">Сумма вакансий</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#downloads" role="tab" data-toggle="tab">Профессии</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="card-block">
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active fade show" id="visits">
+                                        <div>
+                                            {% include 'all_vacancies.html' %}
+
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="downloads">
+                                        <div>
+                                            {% include 'all_specializations.html' %}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="row sameheight-container">
+                    <div class="col">
+                        <div class="card sameheight-item stats" data-exclude="xs">
+                            <div class="card-block">
+                                <div class="title-block">
+                                    <h4 class="title"> О проекте </h4>
+                                </div>
+                                <div class="row row-sm stats-container">
+                                    <div class="col-6 col-sm-3 stat-col">
+                                        <div class="stat-icon">
+                                            <i class="fa fa-stack-overflow"></i>
+                                        </div>
+                                        <div class="stat">
+                                            <div class="value"> 10 000 000</div>
+                                            <div class="name"> Вопросов StackOverflow</div>
+                                        </div>
+                                        <div class="progress stat-progress">
+                                            <div class="progress-bar" style="width: 100%;"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6 col-sm-3  stat-col">
+                                        <div class="stat-icon">
+                                            <i class="fa fa-line-chart"></i>
+                                        </div>
+                                        <div class="stat">
+                                            <div class="value"> $112.550</div>
+                                            <div class="name"> Ежемесячная выгода</div>
+                                        </div>
+                                        <div class="progress stat-progress">
+                                            <div class="progress-bar" style="width: 100%;"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6 col-sm-3  stat-col">
+                                        <div class="stat-icon">
+                                            <i class="fa fa-list-alt"></i>
+                                        </div>
+                                        <div class="stat">
+                                            <div class="value"> 80 000</div>
+                                            <div class="name"> IT-вакансий superjob</div>
+                                        </div>
+                                        <div class="progress stat-progress">
+                                            <div class="progress-bar" style="width: 100%;"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6 col-sm-3 stat-col">
+                                        <div class="stat-icon">
+                                            <i class="fa fa-users"></i>
+                                        </div>
+                                        <div class="stat">
+                                            <div class="value"> 5</div>
+                                            <div class="name"> Участников</div>
+                                        </div>
+                                        <div class="progress stat-progress">
+                                            <div class="progress-bar" style="width: 100%;"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </section>
         </article>
