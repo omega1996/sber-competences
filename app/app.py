@@ -2,10 +2,11 @@ from flask import Flask, render_template
 import pandas as pd
 import json
 
+import os
 app = Flask(__name__)
 
-stat_tech_data = pd.read_csv('data/stat_tech_data.csv')
-spec_stat = pd.read_csv('data/spec_stat.csv')
+stat_tech_data = pd.read_csv('app/data/stat_tech_data.csv')
+spec_stat = pd.read_csv('app/data/spec_stat.csv')
 
 
 @app.route('/')
@@ -17,7 +18,10 @@ def index():
 
 @app.route('/profession/<prof_name>')
 def frontend(prof_name):
-    return render_template(prof_name+'/index.html')
+    tech_files = os.listdir(os.path.join(os.getcwd(), 'app', 'templates', prof_name, 'tech'))
+    tech_files_path = [prof_name + '/tech/' + e for e in tech_files]
+    prof_path = prof_name +'/'+prof_name+'.html'
+    return render_template('profession'+'/index.html', prof_path=prof_path, prof_name=prof_name, tech_files=tech_files, tech_files_path=tech_files_path)
 
 
 @app.route('/get_top_tech/<specialization>/<year>/<month>')

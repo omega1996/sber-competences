@@ -1,0 +1,196 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Сбер компетенции - {{ prof_name }} </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="../static/css/vendor.css">
+    <!-- Theme initialization -->
+    <script>
+        var themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
+            {};
+        var themeName = themeSettings.themeName || '';
+        if (themeName) {
+            document.write(`<link rel="stylesheet" id="theme-style" href="../static/css/app-'${themeName}'.css">`);
+        } else {
+            document.write(`<link rel="stylesheet" id="theme-style" href="../static/css/app.css">`);
+        }
+    </script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+<div class="main-wrapper">
+    <div class="app" id="app">
+        {% include 'header.html' %}
+        {% include 'sidebar.html' %}
+
+        <article class="content frontend-page">
+            <section class="section">
+                <div class="row sameheight-container">
+                    <div class="col col-12 col-sm-12 col-md-6 col-xl-7 ">
+                        <div class="card sameheight-item" data-exclude="xs" id="dashboard-history">
+                            <div class="card-header card-header-sm bordered">
+                                <div class="header-block">
+                                    <h3 class="title">История + предсказание по профессии</h3>
+                                </div>
+                            </div>
+
+                            <div class="card-block">
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active fade show" id="visits">
+                                        <div>
+                                            {% include prof_path %}
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col col-12 col-sm-12 col-md-6 col-xl-5 ">
+                        <div class="card sameheight-item stats" data-exclude="xs">
+                            <div class="card-block">
+
+                                <style>
+                                    .input-date {
+                                        width: 100px;
+                                        align-self: end;
+                                        margin-left: 5px;
+                                    }
+                                </style>
+                                <div class="title-block d-flex">
+                                    <h4 class="title mr-auto p-2"> Статистика </h4>
+                                    <select name="year" onchange="loadtable()"
+                                            class="form-control  input-date p-2" id="year">
+                                        {% for year in [2016,2017,2018,2019,2020] %}
+                                        <option value={{year}}>{{year}}</option>
+                                        {% endfor %}
+
+                                    </select>
+                                    <select name="month" onchange="loadtable()"
+                                            class="form-control  input-date p-2" id="month">
+                                        {% for month in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] %}
+                                        <option value={{month}}>{{month}}</option>
+                                        {% endfor %}
+
+                                    </select>
+                                </div>
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Технология</th>
+                                        <th>Частота</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody id="table-stats">
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>2d</td>
+                                        <td>650</td>
+                                    </tr>
+
+                                    </tbody>
+
+
+                                </table>
+                                <script>
+                                    function loadtable() {
+                                        let table = document.getElementById('table-stats');
+                                        let url = '/get_top_tech/' + '{{prof_name | safe}}' + '/' + document.getElementById("year").value + '/' + document.getElementById("month").value
+                                        fetch(url).then(response => response.json()).then(data => {
+                                            table.innerHTML = "";
+                                            data.forEach((element, index) => {
+                                                let tr = document.createElement('tr')
+                                                let th = document.createElement('th')
+                                                th.scope = 'row';
+                                                th.innerText = index + 1;
+                                                tr.append(th);
+                                                let tech = document.createElement('td');
+                                                tech.innerText = element['tech'];
+                                                let freq = document.createElement('td');
+                                                freq.innerText = element.freq;
+                                                tr.append(tech);
+                                                tr.append(freq);
+                                                table.append(tr)
+                                            })
+                                        })
+                                    }
+
+                                    loadtable()
+
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </section>
+            <section class="section">
+                <div class="row sameheight-container">
+                    <div class="col history-col">
+                        <div class="card sameheight-item" data-exclude="xs" id="morris-area-chart">
+
+                            <div class="card-header card-header-sm bordered">
+                                <div class="header-block">
+                                    <h3 class="title">История + предсказание по технологии</h3>
+
+                                </div>
+
+                                <select class="form-control" onchange="deleteEverything(event.target.value)"
+                                        style="margin-right: 10px">
+                                    {% for tech in tech_files %}
+                                    <option value={{tech}}>{{tech[:-5] }}</option>
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+
+                            <div class="card-block" id="graph" style="height: 500px;">
+                                {% for tech_p in tech_files_path %}
+                                <div id={{tech_p}} style="display: none">
+                                    {% include tech_p %}
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                            <script>
+                                function deleteEverything(target) {
+                                    NodeList.prototype.forEach = Array.prototype.forEach;
+                                    let graphs = document.getElementById('graph').childNodes;
+                                    graphs.forEach((item) => {
+                                        item.style = 'display: none'
+                                    });
+                                    document.getElementById('{{prof_name | safe}}'+"/tech/" + target).style = 'display: block'
+                                }
+
+                            </script>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </article>
+
+        {% include 'footer.html' %}
+        {% include 'first-modal.html' %}
+        {% include 'second-modal.html' %}
+    </div>
+</div>
+
+
+{% include 'scripts.html' %}
+</body>
+
+</html>
