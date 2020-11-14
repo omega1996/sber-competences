@@ -23,11 +23,3 @@
 </script>
 <script src="../static/js/vendor.js"></script>
 <script src="../static/js/app.js"></script>
-<script>
-    let myDash = document.getElementById('dashboard-visits-chart')
-    fetch('firsttry', {mode: 'no-cors'})
-        .then(response => response.text())
-        .then(myhtml => {
-            myDash.innerHTML = myhtml
-        })
-</script>

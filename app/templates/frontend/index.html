@@ -33,7 +33,7 @@
         <article class="content frontend-page">
             <section class="section">
                 <div class="row sameheight-container">
-                    <div class="col col-12 col-sm-12 col-md-6 col-xl-7 history-col">
+                    <div class="col col-12 col-sm-12 col-md-6 col-xl-7 ">
                         <div class="card sameheight-item" data-exclude="xs" id="dashboard-history">
                             <div class="card-header card-header-sm bordered">
                                 <div class="header-block">
@@ -55,20 +55,68 @@
 
                         </div>
                     </div>
+                    <div class="col col-12 col-sm-12 col-md-6 col-xl-5 ">
+                        <div class="card sameheight-item stats" data-exclude="xs">
+                            <div class="card-block">
+                                <div class="title-block">
+                                    <h4 class="title"> Статистика </h4>
+                                </div>
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Технология</th>
+                                            <th>Объем</th>
+                                            <th>Популярность</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>2d</td>
+                                            <td>650</td>
+                                            <td>Выросла</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>3d</td>
+                                            <td>370</td>
+                                            <td>Упала</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>abap</td>
+                                            <td>10</td>
+                                            <td>Не изменилась</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+
             </section>
             <section class="section">
                 <div class="row sameheight-container">
-                    <div class="col col-12 col-sm-12 col-md-6 col-xl-7 history-col">
+                    <div class="col history-col">
                         <div class="card sameheight-item" data-exclude="xs" id="morris-area-chart">
                             <div class="card-header card-header-sm bordered">
                                 <div class="header-block">
                                     <h3 class="title">История + предсказание по технологии</h3>
+
                                 </div>
+                                <select class="form-control" style="margin-right: 10px">
+                                    <option>2d</option>
+                                    <option>3d</option>
+                                    <option>abap</option>
+                                    <option>accessability</option>
+                                </select>
                             </div>
 
                             <div class="card-block">
-                                    {% include 'frontend/tech/2d.html' %}
+                                {% include 'frontend/tech/2d.html' %}
                             </div>
 
                         </div>
