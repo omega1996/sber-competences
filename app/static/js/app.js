@@ -421,6 +421,7 @@ NProgress.configure(npSettings), $(function () {
             lineColors: [config.chart.colorSecondary.toString()],
             pointFillColors: [config.chart.colorPrimary.toString()]
         })
+
     }
 
     $('a[data-toggle="tab"]').on("shown.bs.tab", function (e) {
