@@ -146,7 +146,7 @@
 
                                 </div>
 
-                                <select class="form-control" onchange="deleteEverything(event.target.value)"
+                                <select class="form-control" onchange="deleteEverything()" id="select-prof"
                                         style="margin-right: 10px">
                                     {% for tech in tech_files %}
                                     <option value={{tech}}>{{tech[:-5] }}</option>
@@ -164,7 +164,9 @@
 
                             </div>
                             <script>
-                                function deleteEverything(target) {
+
+                                function deleteEverything() {
+                                    let target = document.getElementById("select-prof").value;
                                     NodeList.prototype.forEach = Array.prototype.forEach;
                                     let graphs = document.getElementById('graph').childNodes;
                                     graphs.forEach((item) => {
@@ -172,6 +174,7 @@
                                     });
                                     document.getElementById('{{prof_name | safe}}'+"/tech/" + target).style = 'display: block'
                                 }
+                                deleteEverything()
 
                             </script>
 
