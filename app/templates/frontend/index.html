@@ -1,0 +1,72 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Сбер компетенции - Frontend </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="../static/css/vendor.css">
+    <!-- Theme initialization -->
+    <script>
+        var themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
+            {};
+        var themeName = themeSettings.themeName || '';
+        if (themeName) {
+            document.write(`<link rel="stylesheet" id="theme-style" href="../static/css/app-'${themeName}'.css">`);
+        } else {
+            document.write(`<link rel="stylesheet" id="theme-style" href="../static/css/app.css">`);
+        }
+    </script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+<div class="main-wrapper">
+    <div class="app" id="app">
+        {% include 'header.html' %}
+        {% include 'sidebar.html' %}
+
+        <article class="content frontend-page">
+            <section class="section">
+                <div class="row sameheight-container">
+                    <div class="col col-12 col-sm-12 col-md-6 col-xl-7 history-col">
+                        <div class="card sameheight-item" data-exclude="xs" id="dashboard-history">
+                            <div class="card-header card-header-sm bordered">
+                                <div class="header-block">
+                                    <h3 class="title">История + предсказание по профессии</h3>
+                                </div>
+                            </div>
+
+                            <div class="card-block">
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active fade show" id="visits">
+                                        <div>
+                                            {% include 'frontend/frontend.html' %}
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        {% include 'footer.html' %}
+        {% include 'first-modal.html' %}
+        {% include 'second-modal.html' %}
+    </div>
+</div>
+
+
+{% include 'scripts.html' %}
+</body>
+
+</html>
