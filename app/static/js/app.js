@@ -545,7 +545,7 @@ $(function () {
 
     function s() {
         (function () {
-            t.themeName ? r.attr("href", "css/app-" + t.themeName + ".css") : r.attr("href", "../static/css/app.css");
+            t.themeName ? r.attr("href", "../static/css/app-" + t.themeName + ".css") : r.attr("href", "../static/css/app.css");
             return o.removeClass("header-fixed footer-fixed sidebar-fixed"), o.addClass(t.headerPosition), o.addClass(t.footerPosition), o.addClass(t.sidebarPosition), o
         })().delay(config.delayTime).queue(function (e) {
             config.chart.colorPrimary = tinycolor($ref.find(".chart .color-primary").css("color")), config.chart.colorSecondary = tinycolor($ref.find(".chart .color-secondary").css("color")), i.each(function () {
