@@ -22,6 +22,10 @@ def frontend(prof_name):
 
 @app.route('/get_top_tech/<specialization>/<year>/<month>')
 def get_top_tech(specialization, year, month):
+    specialization = (specialization
+                      .replace('admin', 'administrator')
+                      .replace('gamedev', 'game developer')
+                      .replace('ds', 'data science'))
     return stat_tech_data[
         (stat_tech_data.spec == specialization)
         & (stat_tech_data.year == int(year))
