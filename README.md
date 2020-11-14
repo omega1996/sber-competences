@@ -1,5 +1,7 @@
 # sber-competences
 Решение на хакатон Цифрового Прорыва от команды [CLS][UNK][PAD][PAD]
+Демонстрационная версия доступна [здесь](http://vlakoresker.pythonanywhere.com/)
+
 
 ## How to run
 1. Склонировать этот репозиторий
